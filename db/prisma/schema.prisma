@@ -1,0 +1,31 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file://workspace/db/db.sqlite3"
+}
+
+model Word {
+  id               Int          @id() @map("_id")
+  word             String
+  definitions      Definition[]
+  ipaPronunciation String
+  audioLink        String?
+}
+
+model Definition {
+  id         Int     @id() @map("_id")
+  definition String
+  example    String?
+  Word       Word?   @relation(fields: [wordId], references: [id])
+  wordId     Int?
+
+  parentDefinition Definition   @relation("SubdefinitionRelation", fields: [definitionId], references: [id])
+  Definition       Definition[] @relation("SubdefinitionRelation")
+  definitionId     Int
+}
