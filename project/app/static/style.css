@@ -12,4 +12,6 @@ body {
 #content {
     flex-direction: column !important;
     width: 250px;
+
+    display: inline-block;
 }
