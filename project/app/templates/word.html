@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <base href="./">
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+</head>
+<body>
+    <div id="content">
+        <h1>{{data.word}}</h1>
+        <p id="ipa"></p>
+        <ul>
+            {% for definition in definitions %}
+                <li>
+                    <p>{{definition.text}}</p>
+                    <p class="quote">"{{definition.example}}"</p>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <script>
+        
+    </script>
+</body>
+</html>
